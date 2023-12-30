@@ -1,0 +1,38 @@
+1)Weighted Sum Model & Weighted Product Model
+
+Xval=length(X(:,1));
+for i=1:Xval
+for j= 1:length(W)
+if Wcriteria(1,j)== 0
+Y(i,j)=min(X(:,j))/X(i,j);
+else
+Y(i,j)=X(i,j)/max(X(:,j));
+end
+end
+end
+for i=1:Xval
+PWSM(i,1)=sum(Y(i,:).*W);
+PWPM(i,1)=prod(Y(i,:).^W);
+end
+Preference_Score_of_Weighted_Sum_Model = num2str([PWSM])
+Preference_Score_of_Weighted_Product_Model= num2str([PWPM])
+
+2)Weighted Aggregated Sum Product Assessment (WASPAS)
+
+Xval=length(X(:,1));
+for i=1:Xval
+for j= 1:length(W)
+if Wcriteria(1,j)== 0
+Y(i,j)=min(X(:,j))/X(i,j);
+else
+Y(i,j)=X(i,j)/max(X(:,j));
+end
+end
+end
+for i=1:Xval
+PWSM(i,1)=sum(Y(i,:).*W);
+PWPM(i,1)=prod(Y(i,:).^W);
+end
+lamda=0.5
+J=lamda*PWSM+(1-lamda)*PWPM;
+Joint_generalized_criterion = num2str([J])
